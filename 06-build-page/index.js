@@ -50,6 +50,6 @@ async function buildPage(template, component, directory, inFile) {
   await fs.writeFile(inFile, html);
 }
 
-buildPage(templatePath, componentsPath, newF, newIndex )
-  .then(() => console.log('Замен шаблонных тегов завершена'))
+buildPage(templatePath, componentsPath, newF, newIndex)
+  .then(() => console.log('Замена шаблонных тегов завершена'))
   .catch((err) => console.error(err));
