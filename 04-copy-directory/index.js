@@ -10,7 +10,7 @@ async function copyDir(srcPath, destPath) {
     await fs.access(destPath);
     await fs.rm(destPath, { recursive: true });
   } catch (error) {
-    
+  
   }
 
   await fs.mkdir(destPath, { recursive: true });
@@ -23,15 +23,17 @@ async function copyDir(srcPath, destPath) {
     const destFile = path.join(destPath, entry.name);
     
     if (entry.isDirectory()) {
-      
       await copyDir(srcFile, destFile);
     } else {
-      
       await fs.copyFile(srcFile, destFile);
     }
   }
 }
 
+if (module.parent) {
+  module.exports = copyDir;
+} else {
 copyDir(srcDir, destDir)
   .then(() => console.log('Копирование завершено'))
   .catch(err => console.error('Ошибка копирования:', err));
+}

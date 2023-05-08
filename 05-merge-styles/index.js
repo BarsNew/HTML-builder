@@ -1,8 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-async function buildStyles() {
-  const dirPath = path.join(__dirname, 'styles');
+const oldFolder = './05-merge-styles';
+const newFolder = './05-merge-styles';
+const oldDirectoty = 'styles';
+const bundle = 'bundle.css';
+
+async function buildStyles(old, now, oldFold, newFold) {
+  const dirPath = path.join(oldFold, old);
   const files = await fs.promises.readdir(dirPath);
   const contents = [];
 
@@ -14,11 +19,15 @@ async function buildStyles() {
   }
 
   const result = contents.join('\n');
-  const newPath = path.join(__dirname, 'bundle.css');
+  const newPath = path.join(newFold, now);
 
   await fs.promises.writeFile(newPath, result);
 }
 
-buildStyles()
+if (module.parent) {
+  module.exports = buildStyles;
+} else {
+  buildStyles(oldDirectoty, bundle, oldFolder, newFolder)
   .then(() => console.log('bundle Ok!'))
   .catch((err) => console.error(err));
+}

@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const path = require('path');
 
@@ -19,11 +18,11 @@ fs.readdir(folderPath, (err, files) => {
       }
 
       if (stats.isFile()) {
-        console.log(`${filePath} is a file`);
+        //console.log(`${filePath} is a file`);
         const ext = path.extname(filePath).replace('.', '');
         const name = path.basename(filePath, ext).replace(/\.$/, '');
         const size = stats.size;
-        const fileSizeInKB = (size / 1024).toFixed(0);
+        const fileSizeInKB = (size / 1024).toFixed(3);
         console.log(`${name} - ${ext} - ${fileSizeInKB}kb`);
       }
     });
