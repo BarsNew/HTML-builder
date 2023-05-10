@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const oldFolder = './05-merge-styles';
-const newFolder = './05-merge-styles';
+const newFolder = './05-merge-styles/project-dist';
 const oldDirectoty = 'styles';
 const bundle = 'bundle.css';
 
